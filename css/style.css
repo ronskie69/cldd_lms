@@ -1,0 +1,155 @@
+*{
+    font-family: 'Poppins', sans-serif !important;
+    box-sizing: border-box;
+}
+body {
+    background: url(../images/cityhall.jpg), #fff389;
+    background-blend-mode: soft-light;
+    background-attachment: fixed;
+    backdrop-filter: brightness(90%);
+    background-position: center;
+    position: relative;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.form_holder {
+    position: relative;
+    background-color: #fff;
+    padding: 10px;
+    box-shadow: 2px 3px 7px #666;
+    border-radius: 10px;
+    z-index: 1;
+    height: fit-content;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+.alert-success {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form_holder .success_image{
+    height: 120px;
+    width: 120px;
+    margin-bottom: 20px;
+    animation: bounce infinite alternate .6s;
+}
+@keyframes bounce {
+    from{
+        transform: translateY(0px);
+    }
+    to{
+        transform: translateY(-30px);
+    }
+}
+.form_holder .left-banner {
+    position: relative;
+    width: 500px;
+    padding: 5px;
+    height: 500px;
+}
+.form_holder .banner {
+    height: 200px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+}
+.item {
+    margin-top: 10px;
+    position: relative;
+    height: calc(500px / 2);
+    width: 100% !important;
+}
+
+.owl-carousel img {
+    height: 100%;
+    object-fit: fill;
+    width: 100%;
+}
+.form_holder h5 {
+    text-align: center;
+    font-weight: 550;
+}
+form {
+    border-radius: 10px;
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin: 5px;
+    border: solid 1px #ccc;
+}
+.cldd_logo {
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: auto;
+}
+.actions {
+    text-align: center;
+    color: #666;
+}
+.actions a {
+    text-decoration: none;
+    font-size: 12px !important;
+    color: #222;
+    transition: ease-in-out .4s;
+}
+.actions a:hover {
+    filter: brightness(110%);
+    text-decoration: underline;
+}
+.input-group {
+    border: solid 2.5px #ccc;
+    border-radius: 10px;
+    background: #fff;
+    text-align: center;
+    transition: ease-in-out .4s;
+}
+.input-group:hover {
+    border: solid 2.5px  yellowgreen;
+    box-shadow: 2px 3px 12px rgba(154, 205, 50, 0.7);
+}
+.btn {
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 15px !important;
+    text-transform: uppercase !important;
+}
+.form-control {
+    position: relative !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+}
+.input-group-text {
+    background: none !important;
+    border: none;
+}
+.alert {
+    font-size: 15px !important;
+}
+label.error {
+    position: absolute;
+    right: -40px;
+    top: -20px;
+    border-radius: 20px !important;
+    box-shadow: 2px 3px 8px #000044;
+    background: #ff4444;
+    padding: 5px;
+    color: #f3f4f6;
+    font-size: 12px;
+    animation: bounce 0.5s infinite alternate;
+}
+@keyframes bounce {
+    from { transform: translateY(0px);}
+    to { transform: translateY(-10px);}
+}
