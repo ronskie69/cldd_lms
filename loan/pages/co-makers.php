@@ -35,8 +35,9 @@ $result = array();
    <?php } ?>
     <h4 class="text-center"><strong>List of Co-Makers</strong></h4>
     <hr/>
-    <div class="col-12">
-            <table class="table shadow-sm" id="users-table">
+    <div class="col-12 table-comakers">
+        <div class="table-comakers">
+        <table class="table shadow-sm table-hover table-striped table-responsive" id="users-table">
                 <thead>
                     <tr>
                         <th>Co-Maker ID</th>
@@ -46,7 +47,6 @@ $result = array();
                         <th>Date of Birth</th>
                         <th>Address</th>
                         <th>Co-Maker Of</th>
-                        <th>Co-Makers</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -67,7 +67,6 @@ $result = array();
                             <td> <?php echo $datax['comaker_address']; ?> </td>
                             <td> <?php echo $datax['comaker_by']; ?> </td>
                             <td> <?php echo ucwords($datax['comaker_status']); ?> </td>
-                            <td> <?php echo ucwords($datax['comaker_status']); ?> </td>
                         </tr>
                     <?php endforeach;
                     } else { ?>
@@ -78,6 +77,7 @@ $result = array();
                 </tbody>
             </table>
         </div>
+    </div>
     </div>
 </div>
 <script type="text/javascript">

@@ -16,7 +16,7 @@ class DBComakers {
 
     public function getAllComakers()
     {
-        $sql1 = "SELECT * FROM `co_makers`";
+        $sql1 = "SELECT * FROM `co_makers1`";
         $i = 0;
         $comaker_data = array();
 

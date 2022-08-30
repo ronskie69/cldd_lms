@@ -66,7 +66,7 @@ if(isset($_POST['update_nickname']))
                     Profile Picture
                 </div>
                 <div class="card-body d-flex justify-content-center align-items-center p-4">
-                    <img src="<?php echo $profile_pic; ?>" alt="My Profile Pic" class="profile_image_img" name="profile_pic">
+                    <img src="<?php echo $profile_pic; ?>" alt="My Profile Pic" class="profile_image_img img-fluid" name="profile_pic">
                 </div>
                 <div class="card-footer">
                     <form action="/cldd/loan/index.php?page=profile" enctype="multipart/form-data" method="POST">

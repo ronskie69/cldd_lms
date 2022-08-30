@@ -112,17 +112,21 @@ if(isset($_POST['confirm_delete_payment'])){
         <?php } ?>
         <div class="col-12">
             <?php include_once('./components/modal_payment.php') ?>
-            <div class="action-payments">
-                <form class="querier querier-400" method="GET" id="querier_client" autocomplete="on">
-                    <input type="search" name="search_input_client" id="search_input" class="search_input" placeholder="Search client here..." >
-                    <button type="submit" class="querier_btn">
-                        <i class="fas fa-search"></i>
+            <div class="row action-payments">
+                <div class="col-sm-12 col-lg-8 col-md-8 mb-3">
+                    <form class="querier w-100" method="GET" id="querier_client" autocomplete="on">
+                        <input type="search" name="search_input_client" id="search_input" class="search_input" placeholder="Search client here..." >
+                        <button type="submit" class="querier_btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-sm-12 col-lg-4 col-md-4">
+                    <button class="btn btn-dark btn-sm p-2" style="font-size: 13px;" data-bs-toggle="modal" data-bs-target="#make_payment">
+                        <i class="fa-solid fa-plus me-1"></i>
+                        New
                     </button>
-                </form>
-                <button class="btn btn-dark btn-sm p-2" style="font-size: 13px;" data-bs-toggle="modal" data-bs-target="#make_payment">
-                    <i class="fa-solid fa-plus me-1"></i>
-                    Make New Payment
-                </button>
+                </div>
             </div>
         </div>
         <?php

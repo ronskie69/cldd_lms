@@ -122,7 +122,7 @@ if(isset($_POST['submit']))
                     <i class="fa-solid fa-calendar me-2 text-warning"></i>
                     Events and Announcements
                 </div>
-                <div class="card-body p-4">
+                <div class="card-body p-4 card-events">
                     <table class="table shadow-sm" id="events-table">
                         <thead>
                             <tr>

@@ -1,2 +1,273 @@
-.navbar 
+@font-face {
+    font-family: 'Ogags';
+    src: url('../libraries/fonts/Nunito-Regular.ttf');
+}
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: "Ogags", sans-serif;
+}
+body {
+    background-color: #f4f5f5;
+}
+
+
+/* HOME */
+.card .card-no-comaker button h6 {
+    font-weight: bold;
+}
+.card-chart-address .card-body {
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.first-row {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 20px;
+}
+.filterer {
+    background-color: #fff;
+    box-shadow: 2px 3px 10px #ccc;
+    width: fit-content;
+    padding: 5px;
+    float: right;
+    border-radius: 10px;
+    display: block;
+    margin: 10px 20px 0 auto;
+    width: 200px;
+}
+.filterer select {
+    width: 100%;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+.filterer select option {
+    padding: 2px;
+    width: 100%;
+    border-radius: 10px !important;
+}
+.filterer select option:hover {
+    filter: brightness(90%);
+}
+.first-row .amount-card {
+    height: 223px;
+}
+.first-row .amount-card .card-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.card-events,
+.card-clients {
+    position: relative;
+    max-height: 450px !important;
+    overflow-y: auto !important;
+}
+.card-events table thead,
+.card-clients table thead {
+    position: sticky;
+    top: 0;
+    background-color: #fff !important;
+    z-index: 5;
+}
+table {
+    background-color: #fff;
+}
+table tbody tr:nth-child(even), table tbody tr:hover{
+    background-color: #f8f0f0 !important;
+    cursor: pointer;
+}
+table th {
+    font-size: 14px !important;
+}
+table td {
+    padding: 10px !important;
+    font-size: 13px !important;
+}
+.btn-dark:hover {
+    color: #FFA209;
+    transform: scale(1.1);
+}
+.card {
+    border-radius: 10px;
+}
+.querier {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    border-radius: 100px;
+    background-color: #fff;
+    width: 100%;
+    height: 40px;
+    padding: 5px 10px;
+    box-shadow: 2px 8px 10px #ccc;
+}
+.querier-400 {
+    width: 400px !important;
+}
+.querier .querier_btn {
+    background: transparent;
+    outline: none;
+    border: none;
+}
+.querier input[type='search'],
+.querier input[type='password'] {
+    height: 100%;
+    width: fit-content;
+    width: 100%;
+    background: transparent !important;
+    outline: none;
+    margin-left: 10px;
+    border: none;
+}
+.button-group button {
+    padding: 5px;
+    font-size: 18px;
+    border: none;
+    box-shadow: 2px 3px 10px #ccc;
+}
+.button-group button.active {
+    color: #fff;
+    background-color: #FFA209;
+}
+.btn-active-accounts {
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+}
+.btn-closed-accounts {
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+div.querier.no-bxs {
+    border: solid 1px #ccc;
+    box-shadow: none !important;
+}
+
+/* CHANGE PASSWORD CSS */
+
+.progress-holder{
+    position: relative;
+    height: 80px;
+}
+.progress {
+    position: relative;
+    background-color: none;
+    height: 10px;
+}
+.progress-holder .progress-title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-20px);
+    background-color: #ccc;
+    padding: 10px 20px;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #fff; 
+}
+.finished {
+    background-color: #FFA209 !important;
+    /* transition-delay: .3s; //ayusin */
+}
+.modal .modal-content {
+    font-size: 14px !important;
+}
+.modal .modal-content .form-control,
+.modal .modal-content .form-select {
+    box-shadow: .5px 2px 6px #ccc !important;
+    font-size: 15px !important;
+}
+.modal .modal-content button {
+    font-size: 14px !important;
+}
+.card-profile img {
+    border-radius: 50%;
+    border: solid 2px #FFA209;
+    height: 120px !important;
+    width: 120px !important;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+/* VIEW CLIENT CSS */
+.back_to_clients_text a:hover{ color: #FFA209 !important;}
+.card-comakers img {
+    height: 80px !important;
+    width: 80px !important;
+}
+.card .card-no-comaker {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+.card .card-no-comaker button {
+    background: none;
+    border: none;
+    outline: none;
+}
+.card .card-no-comaker button i {
+    font-size: 30px;
+    padding: 10px;
+    border: solid 2px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* PAYMENTS CSS */
+.action-payments {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.action-payments .btn {
+    border-radius: 20px;
+    padding: 0 20px;
+}
+.card-table {
+    position: relative;
+    max-height: 600px;
+}
+.table-holder {
+    max-height: 450px;
+    overflow: auto;
+}
+.card-table th {
+    position: sticky;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+.card-table .card-footer {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+/* COMAKERS */
+.table-comakers {
+    max-height: 450px;
+    overflow: auto;
+}
+/* PROFILE CSS */
+
+.card-profile-admin img {
+    max-height: 120px !important;
+    max-width: 120px !important;
+    border-radius: 50%;
+    border: solid 4px #FFA209;
 }

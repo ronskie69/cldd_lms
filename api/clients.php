@@ -32,7 +32,14 @@ class DBClients {
     public function getClientInfos($type ="active")
     {
         $data = array();
-        $sql = "SELECT * FROM `client_info` WHERE `account_type` = '$type'";
+        $sql = "SELECT DISTINCT c.client_user_id, c.fname, c.lname, c.account_type, c.address, c.dob,
+                        CONCAT(COALESCE(m.comaker_fname,'N/A'), ' ',COALESCE(m.comaker_lname, '')) AS `comakers`
+                        FROM `client_info` AS c
+                        LEFT JOIN `co_makers1` AS m
+                        ON c.client_user_id = m.client_user_id
+                        WHERE c.account_type = '$type'
+                        GROUP BY c.client_user_id";
+
         $result = mysqli_query($this->connect, $sql);
 
         $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -253,6 +260,7 @@ class DBClients {
         $address = $data_to_replace['address'];
         $account_type = $data_to_replace['account_type'];
         $CLIENT_USER_ID = $data_to_replace['client_user_id'];
+        $profile_picture = $data_to_replace['new_profile'];
 
         $sql = "UPDATE `client_info` 
             SET `fname` = '$fname', 
@@ -260,7 +268,8 @@ class DBClients {
             `dob` = '$dob', 
             `contact_no` = '$contact_no', 
             `address` = '$address',
-            `account_type` = '$account_type'
+            `account_type` = '$account_type',
+            `profile_pic` = '$profile_picture'
             WHERE `client_user_id` = '$CLIENT_USER_ID'";
 
         if(mysqli_query($this->connect, $sql))
@@ -291,7 +300,9 @@ class DBClients {
 
     public function addCoMaker($comaker_details)
     {
-        $checkSQL = "SELECT COUNT(*) AS `total` FROM `co_makers` WHERE `comaker_user_id` = '$comaker_details'";
+        $client_userid = $comaker_details['client_user_id'];
+
+        $checkSQL = "SELECT COUNT(*) AS `total` FROM `co_makers_1` WHERE `comaker_user_id` = '$client_userid";
         $checker = mysqli_query($this->connect, $checkSQL);
         
         $comakerx = mysqli_fetch_assoc($checker);  
@@ -312,7 +323,7 @@ class DBClients {
             $comaker_dob = $comaker_details['comaker_dob'];
             $comaker_gender = $comaker_details['comaker_gender'];
     
-            $sql = "INSERT INTO `co_makers` (`comaker_id`,`comaker_user_id`,`client_user_id`,`comaker_fname`,`comaker_lname`,`comaker_profile_pic`,`comaker_status`,`comaker_address`,`comaker_contact_no`,`comaker_dob`,`comaker_gender`) 
+            $sql = "INSERT INTO `co_makers1` (`comaker_id`,`comaker_user_id`,`client_user_id`,`comaker_fname`,`comaker_lname`,`comaker_profile_pic`,`comaker_status`,`comaker_address`,`comaker_contact_no`,`comaker_dob`,`comaker_gender`) 
             VALUES(null, '$comaker_uid','$client_user_id','$comaker_fname','$comaker_lname','$comaker_profile_pic','$comaker_status','$comaker_address','$comaker_contact_no','$comaker_dob','$comaker_gender')";
     
             if(mysqli_query($this->connect, $sql))
@@ -326,11 +337,24 @@ class DBClients {
         }
     }
 
+    public function deleteCoMaker($comaker_id)
+    {
+        $sql= "DELETE FROM `co_makers1` WHERE `comaker_user_id` = '$comaker_id'";
+        if(mysqli_query($this->connect, $sql))
+        {
+            return assignResult("success", "You have successfully deleted a co-maker.");
+        } 
+        else
+        {
+            return assignResult("error", "You have failed to delete a co-maker.");
+        }
+    }
+
     public function getCoMakers($client_user_id)
     {
         $data = array();
 
-        $sql = "SELECT * FROM `co_makers` WHERE `client_user_id` = '$client_user_id'";
+        $sql = "SELECT * FROM `co_makers1` WHERE `client_user_id` = '$client_user_id'";
         $result = mysqli_query($this->connect, $sql);
 
         if(mysqli_num_rows($result) > 0)

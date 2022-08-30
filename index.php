@@ -23,7 +23,7 @@ if(isset($_SESSION) && isset($_SESSION['session_user'])){
     <link rel="stylesheet" href="./libraries/fa/css/all.min.css">
     <link rel="stylesheet" href="./libraries/owl/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="./libraries/owl/dist/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/styles.css">
     <!-- SCRIPTS -->
     <script src="./js/jquery.min.js"></script>
     <script src="./libraries/bootstrap5/js/bootstrap.min.js"></script>
@@ -46,6 +46,15 @@ if(isset($_SESSION) && isset($_SESSION['session_user'])){
                     </div>
                     <div class="item">
                         <img src="./images/photo3.jpg" alt="photo 3">
+                    </div>
+                    <div class="item">
+                        <img src="./images/photo5.jpg" alt="photo 4">
+                    </div>
+                    <div class="item">
+                        <img src="./images/photo7.jpg" alt="photo 4">
+                    </div>
+                    <div class="item">
+                        <img src="./images/photo6.jpg" alt="photo 4">
                     </div>
                     <div class="item">
                         <img src="./images/photo4.jpg" alt="photo 4">

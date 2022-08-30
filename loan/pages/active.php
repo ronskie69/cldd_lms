@@ -51,6 +51,18 @@ if(isset($_POST['submit']) && isset($_POST['submit']) == "Add Client")
 
 if(isset($_POST['save']))
 {
+
+    if(isNotValidFile($_FILES['new_profile']['name'])){
+        $result = array(
+            "status" => 'error',
+            "message" => 'File is not an image.',
+            "data" => array()
+        );
+        return;
+    }
+
+    $upload = imageUploader($_FILES['new_profile']['name'], $_FILES['new_profile']['tmp_name'], $_POST['client_user_id']);
+
     $client_data = array(
         "client_user_id" => $_POST['client_user_id'],
         "fname" => trimCaps(strtolower($_POST['fname'])),
@@ -59,6 +71,7 @@ if(isset($_POST['save']))
         "address" => $_POST['address'],
         "account_type" => $_POST['account_type'],
         "contact_no" => $_POST['contact_no'],
+        "new_profile" => $upload['result'] 
     );
     $result = $clients->replaceClientInfo($client_data);
     unset($_POST);
@@ -79,7 +92,7 @@ if(isset($_POST['confirm-delete']))
     <?php if(!empty($result) && $result['status'] === "error") { ?>
     <div class="alert alert-danger alert-dismissible" role="alert" data-bs-dismiss="alert">
         <div class="d-flex justify-content-between">
-            <h5>Failed!</h5>
+            <h6><?php echo $result['message'] ?></h6>
             <a href="/cldd/loan/index.php?page=active"><i class="fa-solid fa-times" data-bs-dismiss="alert"></i></a>
         </div>
     </div>
@@ -87,11 +100,15 @@ if(isset($_POST['confirm-delete']))
    <?php if(!empty($result) && $result['status'] === "success") { ?>
     <div class="alert alert-success alert-dismissible" role="alert" data-bs-dismiss="alert">
         <div class="d-flex justify-content-between">
-            <h5><?php echo $result['message'] ?></h5>
+            <h6><?php echo $result['message'] ?></h6>
             <a href="/cldd/loan/index.php?page=active"><i class="fa-solid fa-times" data-bs-dismiss="alert"></i></a>
         </div>
     </div>
    <?php } ?>
+
+   <!-- MODAL FOR EXCEL FILE IMPORT -->
+   <?php include('./components/modal_excel.php') ?>
+
 
    <!-- ALERT FOR DELETE -->
    <?php if(isset($_GET['delete'])) { ?>
@@ -127,7 +144,11 @@ if(isset($_POST['confirm-delete']))
                 New Client
             </a>
             <input type="file" name="excel_file" id="excel_file" onchange="fileSelected(this)" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="d-none">
-            <button type="button" class="btn btn-sm btn-dark mb-4" onclick="openAttachment()" id="button_excel">
+            <button type="button" name="import" class="btn btn-sm btn-dark mb-4" data-bs-toggle="modal" data-bs-target="#modal_excel" id="button_excel_import">
+                <i class="fa-solid fa-question-circle me-1"></i>
+                Import Excel
+            </button>
+            <button type="button" name="excelf" class="btn btn-sm btn-dark mb-4" onclick="openAttachment()" id="button_excel">
                 <i class="fa-solid fa-file me-1"></i>
                 Import Excel File
             </button>
@@ -141,10 +162,10 @@ if(isset($_POST['confirm-delete']))
         if(isset($_GET['edit'])) 
         {
             $client_data = $clients->getClient($_GET['edit']);
-            $classname = isset($_GET['edit']) ? "col-8 mb-4" : "col-12 mb-4";
+            $classname = isset($_GET['edit']) ? "col-lg-8 col-md-8 col-sm-12 mb-4" : "col-lg-12 col-md-8 col-sm-12 mb-4";
 
         ?>
-        <div class="col-4 mb-4">
+        <div class="col-lg-4 col-md-4 col-sm-12 mb-4">
             <div class="card shadow-sm">
                 <div class="card-header">
                     <strong>
@@ -153,7 +174,7 @@ if(isset($_POST['confirm-delete']))
                     </strong>
                 </div>
                 <div class="card-body p-2">
-                    <form method="POST" action="/cldd/loan/index.php?page=active">
+                    <form method="POST" action="/cldd/loan/index.php?page=active" enctype="multipart/form-data">
                         <input type="hidden" class="form-control" id="client_user_id" name="client_user_id" required value="<?php echo $client_data['client_user_id'] ?>">    
                         <div class="mb-3">
                             <label for="fname" class="col-form-label">First Name:</label>
@@ -232,6 +253,10 @@ if(isset($_POST['confirm-delete']))
                                 <option value="Uwisan" <?php echo $client_data['address'] === 'Uwisan' ? 'selected' : '' ?>>Uwisan</option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="fname" class="col-form-label">Client's Profile Image</label>
+                            <input type="file" accept="image/*" class="form-control" id="new_profile" name="new_profile">
+                        </div>
                         <div class="d-flex justify-content-between">
                             <a href="/cldd/loan/index.php?page=active" class="btn btn-sm btn-danger">
                                 <i class="fa-solid fa-times me-1"></i>
@@ -255,7 +280,7 @@ if(isset($_POST['confirm-delete']))
                         Active Clients Table
                     </strong>
                 </div>
-                <div class="card-body">
+                <div class="card-body card-clients">
                     <table class="table shadow-sm" id="users-table">
                         <thead>
                             <tr>
@@ -265,6 +290,7 @@ if(isset($_POST['confirm-delete']))
                                 <th>Date of Birth</th>
                                 <th>Address</th>
                                 <th>Status</th>
+                                <th>Comaker(s)</th>
                                 <th>
                                     Options
                                 </th>
@@ -287,6 +313,7 @@ if(isset($_POST['confirm-delete']))
                                     <td> <?php echo $datax['dob']; ?> </td>
                                     <td> <?php echo $datax['address']; ?> </td>
                                     <td> <?php echo ucwords($datax['account_type']); ?> </td>
+                                    <td> <?php echo strlen($datax['comakers']) > 4 ? ucwords($datax['comakers']).", etc." : $datax['comakers']; ?></td>
                                     <td>
                                         <a title ="View Client" href="/cldd/loan/index.php?page=view_client&client_uid=<?php echo $datax['client_user_id'] ?>" class="btn btn-secondary btn-sm">
                                             <i class="fa-solid fa-eye"></i>
@@ -320,8 +347,27 @@ if(isset($_POST['confirm-delete']))
 
     function fileSelected(input){
         document.getElementById('button_excel').value=input.files[0].name
-        console.log(input.files[0])
+        
+        let formData = new FormData();
+        formData.append("file", input.files[0])
+        $.ajax({
+            method: 'POST',
+            url: '../ajax/uploadExcel.php',
+            contentType: false,
+            dataType: 'json',
+            processData: false,
+            data: formData,
+            success: (data) => console.log(data),
+            error: (err) => console.log(err)
+        });
     }
 
     $('#users-table').DataTable();
+
+    $('#button_excel').hide();
+
+    $('#button_excel_import').click(function(){
+        $(this).hide();
+        $('#button_excel').show();
+    })
 </script>

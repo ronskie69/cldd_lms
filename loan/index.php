@@ -33,8 +33,8 @@ if(!isset($_SESSION) && !isset($_SESSION['session_user'])){
     <link rel="stylesheet" href="../libraries/owl/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="../libraries/owl/dist/assets/owl.theme.default.min.css">
     <link rel="stylesheet" href="../libraries/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="../css/dashboard-style.css">
-    <link rel="stylesheet" href="../css/dashstyle.css">
+    <link rel="stylesheet" href="../css/dashboard-styles.css">
+    <link rel="stylesheet" href="../css/loan.css">
     <!-- SCRIPTS -->
     <script src="../js/jquery.min.js"></script>
     <script src="../libraries/jquery-ui/jquery-ui.min.js"></script>
@@ -115,8 +115,8 @@ if(!isset($_SESSION) && !isset($_SESSION['session_user'])){
                     </a>
                 </li>
 
-                <li class="item" title="Payments">
-                    <a href="/cldd/loan/index.php?page=co-makers" class="menu-btn <?php echo $_GET['page'] === "payments" ?"active-menu":"" ?>">
+                <li class="item" title="Co-makers">
+                    <a href="/cldd/loan/index.php?page=co-makers" class="menu-btn <?php echo $_GET['page'] === "co-makers" ?"active-menu":"" ?>">
                         <i class="fa-solid fa-people-group"></i><span>Co-Makers</span>
                     </a>
                 </li>

@@ -10,7 +10,7 @@ $client = new DBClients();
     <div class="container">
         <h4 class="text-center mt-4"><strong>Dashboard</strong></h4>
         <hr/>
-        <div class="row mt-3 first-row">
+        <div class="row first-row">
             <div class="col-lg-6 col-md-6 col-sm-12">
                 <div class="card shadow-sm mb-2">
                     <div class="card-header bg-white text-center">
@@ -34,7 +34,7 @@ $client = new DBClients();
                         </h5>
                     </div>
                 </div>
-                <div class="card shadow-sm mb-2">
+                <div class="card shadow-sm">
                     <div class="card-header bg-white text-center">
                         <strong>Inactive/Closed Accounts</strong>
                     </div>
@@ -71,9 +71,9 @@ $client = new DBClients();
                 </div>
             </div>
         </div>
-        <div class="row mt-2">
+        <div class="row">
             <div class="col-lg-8 col-md-8 col-sm-12">
-                <div class="card mb-4">
+                <div class="card shadow-sm">
                     <div class="card-header bg-white text-center">
                         <strong>Payment Chart for the Year <?php echo date('Y'); ?></strong>
                     </div>
@@ -92,7 +92,7 @@ $client = new DBClients();
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
-                <div class="card bg-white mb-4 card-chart-address">
+                <div class="card bg-white shadow-sm card-chart-address">
                     <div class="card-header bg-white text-center">
                         <strong><i class="fa-solid fa-map-marker-alt me-1 text-primary"></i>Address of other clients</strong>
                     </div>

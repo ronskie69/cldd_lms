@@ -153,3 +153,11 @@ label.error {
     from { transform: translateY(0px);}
     to { transform: translateY(-10px);}
 }
+@media screen and (max-width: 992px) {
+    .form_holder {
+        flex-direction: column;
+    }
+    .left-banner {
+        display: none;
+    }
+}

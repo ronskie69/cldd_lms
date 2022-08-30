@@ -14,7 +14,6 @@ function trimCaps($string)
 {
     return trim(ucwords($string));
 }
-
 function assignResult($status, $message, $data = array())
 {
     return array(
@@ -51,7 +50,7 @@ function imageUploader($file_name, $file_temp_name,$image_owner)
         else
         {
             return array(
-                "isUploaded" => true,
+                "isUploaded" => false,
                 "result" => $file_name
             );
         }
@@ -60,7 +59,7 @@ function imageUploader($file_name, $file_temp_name,$image_owner)
    catch(Exception $e)
    {
         return array(
-            "isUploaded" => true,
+            "isUploaded" => false,
             "result" => $file_name
         );
    }
@@ -69,7 +68,7 @@ function imageUploader($file_name, $file_temp_name,$image_owner)
 function isNotValidFile($file_name)
 {
     $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
-    if($file_ext !=='png' && $file_ext !== 'jpeg' && $file_ext !== 'jpg')
+    if($file_ext !=='png' && $file_ext !== 'jpeg' && $file_ext !== 'jpg' && $file_ext !== 'webp')
     {
         return true;
     }
